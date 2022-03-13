@@ -14,8 +14,8 @@ const SavedBooks = () => {
 //TODO Add UseQuery()
 //TODO Instead, use the useQuery() Hook to execute the GET_ME query on load and save it to a variable named userData.
 
-    getUserData();
-  }, [userDataLength]);
+  //   getUserData();
+  // }, [userDataLength]);
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
   const handleDeleteBook = async (bookId) => {

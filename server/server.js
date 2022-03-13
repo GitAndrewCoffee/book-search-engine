@@ -4,12 +4,14 @@ const db = require('./config/connection');
 // const routes = require('./routes');
 const { ApolloServer } = require('apollo-server-express');
 const { typeDefs, resolvers } = require('./Schemas');
+const morgan = require('morgan')
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(morgan('combined'));
 
 const startServer = async () => {
   // create a new Apollo server and pass in our schema data
