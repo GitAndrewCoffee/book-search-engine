@@ -39,10 +39,6 @@ export const REMOVE_BOOK = gql`
     removeBook(id: $id) {
       _id
       username
-      friends {
-        _id
-        username
-      }
     }
   }
 `;

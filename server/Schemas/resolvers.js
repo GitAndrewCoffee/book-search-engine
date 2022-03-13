@@ -46,6 +46,9 @@ const resolvers = {
       return { token, user };
     },
     saveBook: async (parent, args, context) => {
+      console.log('saveBook is running"');
+      console.log(context);
+      console.log(args);
       if (context.user) {
         const book = await Book.create({ ...args, username: context.user.username });
 
