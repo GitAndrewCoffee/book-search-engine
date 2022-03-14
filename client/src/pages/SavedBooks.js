@@ -16,10 +16,13 @@ const SavedBooks = () => {
   // use this to determine if `useEffect()` hook needs to run again
   
 
-  const { queryData } = useQuery(GET_ME);
-  const [deleteBook] = useMutation(REMOVE_BOOK);
+  const { data } = useQuery(GET_ME);
+  const [deleteBook, { error } ] = useMutation(REMOVE_BOOK);
+  console.log(data);
 
-  const userData = queryData?.user || {};
+  const userData = data?.me || {};
+  console.log('userData is:');
+  console.log(userData);
 
   const userDataLength = Object.keys(userData).length;
 
@@ -35,16 +38,16 @@ const SavedBooks = () => {
     }
 
     try {
-      //TODO Use the useMutation() Hook to execute the REMOVE_BOOK mutation in the handleDeleteBook() function instead of the deleteBook() function that's imported from API file. (Make sure you keep the removeBookId() function in place!)
+      
       // const response = await deleteBook(bookId, token);
 
       // if (!response.ok) {
       //   throw new Error('something went wrong!');
       // }
 
-      const { bookData } = await deleteBook({
-        variables: { bookID },
-      })
+      const { data } = await deleteBook({
+        variables: { bookId },
+      });
 
       // const updatedUser = await response.json();
       // setUserData(updatedUser);
@@ -56,7 +59,7 @@ const SavedBooks = () => {
   };
 
   // if data isn't here yet, say so
-  if (!userDataLength) {
+  if (!data) {
     return <h2>LOADING...</h2>;
   }
 
